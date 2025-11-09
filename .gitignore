@@ -1,6 +1,7 @@
 # Node.js / backend
-backend/node_modules/
-backend/.env
+backEnd/node_modules/
+backEnd/.env
 
 # React / frontend
-frontend/node_modules/
+frontEnd/node_modules/
+frontEnd/.env
