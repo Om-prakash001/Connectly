@@ -1,6 +1,7 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import {generateToken} from "../utils/jwt.js";
+import cloudinary from "../utils/cloudinary.js";
 
 export const signup = async (req, res) => {
   //for acessing data from req body
@@ -98,7 +99,7 @@ export const updateProfile = async (req, res) => {
     // 
     const {profilePic} = req.body;
     //  get _id from req.authenticatedUser set in protectRoute middleware
-    const userId = req.autheticatedUser._id;
+    const userId = req.authenticatedUser._id;
 
     if(!profilePic){
       return res.status(400).json({message: "Profile picture is required"});
