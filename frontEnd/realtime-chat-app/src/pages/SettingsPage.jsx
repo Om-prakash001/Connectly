@@ -1,8 +1,8 @@
-import { useThemeStore } from "../store/useThemeStore.js";
-import { THEMES } from "../constants/index.js"
+import { THEMES } from "../constants";
+import { useThemeStore } from "../store/useThemeStore";
 import { Send } from "lucide-react";
 
-const PREVIEW_MESSAGE = [
+const PREVIEW_MESSAGES = [
   { id: 1, content: "Hey! How's it going?", isSent: false },
   { id: 2, content: "I'm doing great! what about you.?", isSent: true },
 ];
@@ -11,7 +11,7 @@ const SettingsPage = () => {
   const { theme, setTheme } = useThemeStore();
 
   return (
-    <div className="h-screen container mx-auto px-4 pt-60 max-w-5xl">
+    <div className="max-h-auto container mx-auto px-4 pt-20 max-w-5xl">
       <div className="space-y-6">
         <div className="flex flex-col gap-1">
           <h2 className="text-lg font-semibold">Theme</h2>
@@ -24,7 +24,7 @@ const SettingsPage = () => {
               key={t}
               className={`
                 group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors
-                ${theme === t ? "bg-base-200" : "bg-transparent hover:bg-base-200"}
+                ${theme === t ? "bg-base-200" : "hover:bg-base-200/50"}
               `}
               onClick={() => setTheme(t)}
             >
@@ -42,29 +42,30 @@ const SettingsPage = () => {
             </button>
           ))}
         </div>
-        {/* Preview Section*/}
+
+        {/* Preview Section */}
         <h3 className="text-lg font-semibold mb-3">Preview</h3>
-        <div className="rounded-xl border border-base-300 overflow-hidden bg-base-100 shadow-lg">
+        <div className="rounded-xl border border-base-300 overflow-hidden  shadow-lg">
           <div className="p-4 bg-base-200">
-            <div className="max-w-lg mx-auto ">
+            <div className="max-w-lg mx-auto">
               {/* Mock Chat UI */}
               <div className="bg-base-100 rounded-xl shadow-sm overflow-hidden">
                 {/* Chat Header */}
                 <div className="px-4 py-3 border-b border-base-300 bg-base-100">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content font-medium">
-                      J
+                      O
                     </div>
                     <div>
-                      <h3 className="font-medium text-sm">John Doe</h3>
+                      <h3 className="font-medium text-sm">Om Prakash</h3>
                       <p className="text-xs text-base-content/70">Online</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Chat Messages */}
-                <div className="p-4 space-y-4 min-h-[200px] max-h-[200px] overflow-y-auto bg-base-100">
-                  {PREVIEW_MESSAGE.map((message) => (
+                <div className="p-4 space-y-4 h-[200px] bg-base-100 overflow-hidden">
+                  {PREVIEW_MESSAGES.map((message) => (
                     <div
                       key={message.id}
                       className={`flex ${message.isSent ? "justify-end" : "justify-start"}`}
@@ -82,13 +83,14 @@ const SettingsPage = () => {
                             ${message.isSent ? "text-primary-content/70" : "text-base-content/70"}
                           `}
                         >
-                          12:00 PM
+                          9:00 PM
                         </p>
                       </div>
                     </div>
                   ))}
                 </div>
-                
+
+                {/* Chat Input */}
                 <div className="p-4 border-t border-base-300 bg-base-100">
                   <div className="flex gap-2">
                     <input
@@ -103,7 +105,6 @@ const SettingsPage = () => {
                     </button>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -112,5 +113,4 @@ const SettingsPage = () => {
     </div>
   );
 };
-
 export default SettingsPage;

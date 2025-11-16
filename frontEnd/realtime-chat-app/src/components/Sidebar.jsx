@@ -1,4 +1,4 @@
-import SidebarSkeleton from "./SidebarSkeleton";
+import SidebarSkeleton from "./skeleton/SidebarSkeleton.jsx";
 import {useChatStore} from "../store/useChatStore.js";
 import {useAuthStore} from "../store/useAuthStore.js"
 

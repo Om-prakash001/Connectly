@@ -26,7 +26,7 @@ app.use(cors({
 
 //routes
 app.use("/api/auth", authRoutes);
-app.use("/api/message", messageRoutes);
+app.use("/api/messages", messageRoutes);
 
 // instead of this we use in .env file for security prupose
 // const PORT = 5000;
