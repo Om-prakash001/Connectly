@@ -1,19 +1,20 @@
+import dotenv from "dotenv";
+//load env variables
+dotenv.config();
 import express from "express";
 import authRoutes from "./routes/authRouter.js";
 import messageRoutes from "./routes/messageRouter.js";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import {app, server} from "./utils/socket.js";
+import {connectDB} from "./utils/db.js";
 
 
 // console.log("JWT SECRET:", process.env.JWT_SECRET);
 
-//intialize express app for backend
-const app = express();
 
 //for parsing json data
-app.use(express.json());
+
 
 //for parsing cookies
 app.use(cookieParser());
@@ -24,6 +25,8 @@ app.use(cors({
   credentials: true
 }))
 
+app.use(express.json({ limit: "50mb"}));
+
 //routes
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
@@ -33,16 +36,12 @@ app.use("/api/messages", messageRoutes);
 // const DB_PATH =
 //   "mongodb+srv://OmPrkashChatApp:MongoKanha123@cluster0.j4sf7wt.mongodb.net/chat-app";
 
-//load env variables
-dotenv.config();
 
-const PORT = process.env.PORT || 5000;
-// connect mongodb using .env file
-mongoose.connect(process.env.MONGO_URI).then(() => {
-  console.log("Connected to Mongo");
-    app.listen(PORT, () => {
-      console.log(`Server is running  on address http://localhost:${PORT}`);
-    });
-}).catch (err => {
-  console.log("Error connecting to Mongo", err);
+const PORT = process.env.PORT;
+
+server.listen(PORT, () => {
+  console.log("server is running on PORT:" + PORT);
+  connectDB();
 });
+
+

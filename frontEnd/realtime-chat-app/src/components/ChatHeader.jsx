@@ -4,7 +4,7 @@ import { X } from 'lucide-react';
 
 const ChatHeader = () => {
   const {selectedUser, setSelectedUser} = useChatStore();
-  const {onlineUsers} = useAuthStore();
+  const {onLineUsers} = useAuthStore();
 
   return (
     <div className="p-2.5 border-b border-base-300">
@@ -23,7 +23,7 @@ const ChatHeader = () => {
               {selectedUser.fullName}
             </h3>
             <p className="text-sm text-base-content/70">
-            {onlineUsers?.includes(selectedUser.id) ? "Online" : "Ofline"}</p>
+            {onLineUsers?.includes(selectedUser._id) ? "Online" : "Ofline"}</p>
           </div>
         </div>
 
