@@ -1,0 +1,22 @@
+{
+  "name": "chat-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build":"npm install --prefix backEnd && npm install --prefix frontEnd && npm run build --prefix frontEnd",
+    "start": "npm run start --prefix backEnd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Om-prakash001/Connectly.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Om-prakash001/Connectly/issues"
+  },
+  "homepage": "https://github.com/Om-prakash001/Connectly#readme"
+}
