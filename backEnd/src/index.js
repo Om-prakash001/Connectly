@@ -9,12 +9,7 @@ import cors from "cors";
 import {app, server} from "./utils/socket.js";
 import {connectDB} from "./utils/db.js";
 
-
-// console.log("JWT SECRET:", process.env.JWT_SECRET);
-
-
-//for parsing json data
-
+import path from "path";
 
 //for parsing cookies
 app.use(cookieParser());
@@ -23,13 +18,25 @@ app.use(cookieParser());
 app.use(cors({
   origin: "http://localhost:5173",
   credentials: true
-}))
+}));
+
+const __dirname = path.resolve();
+
 
 app.use(express.json({ limit: "50mb"}));
 
 //routes
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+
+if(process.env.NODE_ENV === "production" ) {
+  app.use(express.static(path.join(__dirname, "../frontEnd/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontEnd/dist/index.html"));
+  })
+
+}
 
 // instead of this we use in .env file for security prupose
 // const PORT = 5000;
