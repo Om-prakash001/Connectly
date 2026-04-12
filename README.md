@@ -85,14 +85,14 @@ cd Connectly
 #### Frontend:
 
 ```bash
-cd client
+cd frontEnd
 npm install
 ```
 
 #### Backend:
 
 ```bash
-cd server
+cd backEnd
 npm install
 ```
 
